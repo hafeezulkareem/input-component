@@ -19,7 +19,7 @@ interface InputProps {
    rows: number
    startIcon: string
    endIcon: string
-   onChangeInput: (updatedInput: string) => void
+   onChangeInput: (event: React.FormEvent<HTMLInputElement>) => void
    input: string
    hint: string
    type: string
@@ -54,6 +54,7 @@ class Input extends Component<InputProps> {
 
    render() {
       const {
+         type,
          input,
          placeholder,
          onChangeInput,
@@ -72,6 +73,7 @@ class Input extends Component<InputProps> {
                {label}
             </InputLabel>
             <TextInput
+               type={type}
                value={input}
                placeholder={placeholder}
                onChange={onChangeInput}
