@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 
 import { colors, shapes, sizes, types } from './constants'
-import { TextInput } from './styledComponents'
+import {
+   InputHint,
+   InputLabel,
+   LabelAndInputContainer,
+   TextInput,
+} from './styledComponents'
 
 interface InputProps {
    label: string
@@ -16,6 +21,7 @@ interface InputProps {
    endIcon: string
    onChangeInput: (updatedInput: string) => void
    input: string
+   hint: string
    type: string
    placeholder: string
    className: string
@@ -36,6 +42,7 @@ class Input extends Component<InputProps> {
       placeholder: 'Enter text',
       onChangeInput: () => {},
       input: '',
+      hint: '',
       type: types.text,
       className: '',
    }
@@ -46,8 +53,37 @@ class Input extends Component<InputProps> {
    static types = types
 
    render() {
-      const { input, placeholder, ...other } = this.props
-      return <TextInput {...other} />
+      const {
+         input,
+         placeholder,
+         onChangeInput,
+         label,
+         hint,
+         size,
+         shape,
+         color,
+         disabled,
+         error,
+         ...other
+      } = this.props
+      return (
+         <LabelAndInputContainer>
+            <InputLabel error={error} color={color}>
+               {label}
+            </InputLabel>
+            <TextInput
+               value={input}
+               placeholder={placeholder}
+               onChange={onChangeInput}
+               size={size}
+               shape={shape}
+               color={color}
+               error={error}
+               {...other}
+            />
+            <InputHint></InputHint>
+         </LabelAndInputContainer>
+      )
    }
 }
 

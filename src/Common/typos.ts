@@ -31,6 +31,14 @@ const BaseNotoSansJPMediumText = styled(BaseNotoSansJPText)`
    ${tw`font-medium`}
 `
 
+export const Typo10NotoSansJPMedium = styled(BaseNotoSansJPMediumText)`
+   ${tw`text-10px`}
+`
+
+export const Typo12NotoSansJPMedium = styled(BaseNotoSansJPMediumText)`
+   ${tw`text-12px`}
+`
+
 export const Typo14NotoSansJPMedium = styled(BaseNotoSansJPMediumText)`
    ${tw`text-14px`}
 `
