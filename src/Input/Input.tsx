@@ -28,7 +28,7 @@ interface InputProps {
 }
 
 class Input extends Component<InputProps> {
-   defaultProps = {
+   static defaultProps = {
       label: '',
       error: false,
       disabled: false,
