@@ -1,7 +1,9 @@
 import React from 'react'
 
+import InputExpo from './InputExpo'
+
 function App() {
-   return <div>Coming...</div>
+   return <InputExpo />
 }
 
 export default App

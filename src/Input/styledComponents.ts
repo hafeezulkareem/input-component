@@ -2,13 +2,12 @@ import tw, { styled, TwStyle } from 'twin.macro'
 
 import { Typo10NotoSansJPMedium, Typo12NotoSansJPMedium } from '../Common/typos'
 
-import { shapes, sizes } from './constants'
-import { getColor } from './utils'
+import { colors, shapes, sizes } from './constants'
 
 const getShapeStyles = (shape: string): TwStyle => {
    switch (shape) {
       case shapes.rectangle:
-         return tw`rounded-0`
+         return tw`rounded-none`
       case shapes.square:
          return tw`rounded-4px`
       default:
@@ -19,56 +18,88 @@ const getShapeStyles = (shape: string): TwStyle => {
 const getSizeStyles = (size: string) => {
    switch (size) {
       case sizes.small:
-         return tw`py-4px px-8px`
+         return tw`p-8px`
       case sizes.medium:
-         return tw`py-8px px-12px`
+         return tw`p-12px`
       case sizes.large:
-         return tw`py-12px px-16px`
+         return tw`p-20px`
       default:
-         return tw`py-8px px-12px`
+         return tw`p-12px`
    }
 }
 
-// const getColorStyles = (color: string) => {
-//    switch (color) {
-//       case colors.default:
-//          return tw`focus:border-royalBlue`
-//       case colors.primary:
-//          return tw`focus:border-royalBlue`
-//       case colors.secondary:
-//          return tw`focus:border-eclipse`
-//       case colors.warning:
-//          return tw`focus:border-ecstasy`
-//       case colors.success:
-//          return tw`focus:border-salem`
-//       case colors.danger:
-//          return tw`focus:border-persianRed`
-//       default:
-//          return tw`focus:border-royalBlue`
-//    }
-// }
+const getInputColorStyles = (color: string) => {
+   switch (color) {
+      case colors.default:
+         return tw`focus:border-royalBlue`
+      case colors.primary:
+         return tw`focus:border-royalBlue`
+      case colors.secondary:
+         return tw`focus:border-eclipse`
+      case colors.warning:
+         return tw`focus:border-ecstasy`
+      case colors.success:
+         return tw`focus:border-salem`
+      case colors.danger:
+         return tw`focus:border-persianRed`
+      default:
+         return tw`focus:border-royalBlue`
+   }
+}
 
-export const LabelAndInputContainer = styled.div``
+const getTextColorStyles = (color: string, error: boolean) => {
+   console.log('getTextColorStyles -> error, color', color, error)
+   if (error) {
+      return tw`text-persianRed`
+   }
+   switch (color) {
+      case colors.default:
+         return tw`text-royalBlue`
+      case colors.primary:
+         return tw`text-royalBlue`
+      case colors.secondary:
+         return tw`text-eclipse`
+      case colors.warning:
+         return tw`text-ecstasy`
+      case colors.success:
+         return tw`text-salem`
+      case colors.danger:
+         return tw`text-persianRed`
+      default:
+         return tw`text-royalBlue`
+   }
+}
 
-export const InputLabel = styled(Typo12NotoSansJPMedium)(({ error, color }) => [
-   tw`text-${getColor(color)}`,
-   error ? tw`text-persianRed` : tw``,
-])
+export const LabelAndInputContainer = styled.div`
+   ${tw`
+      w-full flex flex-col
+   `}
+`
 
 export const TextInput = styled.input(
-   ({ error, shape, size, color, disabled }) => [
-      tw`w-full mt-4px border border-solid border-gray20`,
+   ({ error, size, shape, color, disabled, fullWidth }) => [
+      tw`mt-8px border border-solid border-gray20 outline-none`,
       getShapeStyles(shape),
       getSizeStyles(size),
-      tw`focus:border-${getColor(color)}`,
-      error ? tw`focus:border-persianRed` : tw``,
+      getInputColorStyles(color),
+      error && tw`border-persianRed focus:border-persianRed`,
       disabled
          ? tw`cursor-not-allowed border-gainsboro bg-concrete`
-         : tw`cursor-pointer`,
+         : tw`cursor-auto`,
+      fullWidth ? tw`` : tw`w-maxContent`,
    ]
 )
 
-export const InputHint = styled(Typo10NotoSansJPMedium)(({ error, color }) => [
-   tw`mt-4px text-${getColor(color)}`,
-   error ? tw`text-persianRed` : tw``,
-])
+export const InputLabel = styled(Typo12NotoSansJPMedium)`
+   ${TextInput}:focus ~ & {
+      ${({ color, error }) => getTextColorStyles(color, error)}
+   }
+   ${({ error }) => [tw`order-first`, error && tw`text-persianRed`]}
+`
+
+export const InputHint = styled(Typo10NotoSansJPMedium)`
+   ${TextInput}:focus ~ & {
+      ${({ color, error }) => getTextColorStyles(color, error)}
+   }
+   ${({ error }) => [tw`mt-8px`, error && tw`text-persianRed`]}
+`

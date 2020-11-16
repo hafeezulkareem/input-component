@@ -15,6 +15,7 @@ interface InputProps {
    size: string
    color: string
    shape: string
+   fullWidth: boolean
    multiline: boolean
    rows: number
    startIcon: string
@@ -35,6 +36,7 @@ class Input extends Component<InputProps> {
       size: sizes.medium,
       color: colors.primary,
       shape: shapes.square,
+      fullWidth: false,
       multiline: false,
       rows: 0,
       startIcon: '',
@@ -62,6 +64,7 @@ class Input extends Component<InputProps> {
          hint,
          size,
          shape,
+         fullWidth,
          color,
          disabled,
          error,
@@ -69,9 +72,6 @@ class Input extends Component<InputProps> {
       } = this.props
       return (
          <LabelAndInputContainer>
-            <InputLabel error={error} color={color}>
-               {label}
-            </InputLabel>
             <TextInput
                type={type}
                value={input}
@@ -81,9 +81,16 @@ class Input extends Component<InputProps> {
                shape={shape}
                color={color}
                error={error}
+               disabled={disabled}
+               fullWidth={fullWidth}
                {...other}
             />
-            <InputHint></InputHint>
+            <InputLabel error={error} color={color}>
+               {label}
+            </InputLabel>
+            <InputHint error={error} color={color}>
+               {hint}
+            </InputHint>
          </LabelAndInputContainer>
       )
    }
