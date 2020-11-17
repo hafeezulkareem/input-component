@@ -13,9 +13,3 @@ export const shapes = {
    rectangle: 'RECTANGLE',
    square: 'SQUARE',
 }
-
-export const types = {
-   text: 'text',
-   password: 'password',
-   number: 'number',
-}
