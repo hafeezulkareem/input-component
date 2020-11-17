@@ -35,7 +35,7 @@ const getInputColorStyles = (color: string) => {
       case colors.primary:
          return tw`focus:border-royalBlue`
       case colors.secondary:
-         return tw`focus:border-eclipse`
+         return tw`focus:border-gray3`
       case colors.warning:
          return tw`focus:border-ecstasy`
       case colors.success:
@@ -57,7 +57,7 @@ const getTextColorStyles = (color: string, error: boolean) => {
       case colors.primary:
          return tw`text-royalBlue`
       case colors.secondary:
-         return tw`text-eclipse`
+         return tw`text-gray3`
       case colors.warning:
          return tw`text-ecstasy`
       case colors.success:

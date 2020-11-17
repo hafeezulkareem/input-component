@@ -4,6 +4,7 @@ import Input from '../Input'
 
 import {
    AuthInfo,
+   CustomInput,
    DefaultDescriptionText,
    DevChallengesSiteLink,
    FullWidthInputAndDescriptionContainer,
@@ -127,11 +128,150 @@ class InputExpo extends Component {
                      input={this.state.inputValue}
                      onChangeInput={this.onChangeInputValue}
                      label='Label'
-                     color={Input.colors.success}
                      fullWidth
                   />
                </InputContainer>
             </FullWidthInputAndDescriptionContainer>
+         </InputExpoRow>
+      )
+   }
+
+   renderFifthRow = (): ReactNode => {
+      return (
+         <InputExpoRow>
+            <InputAndDescriptionContainer>
+               <DefaultDescriptionText>
+                  {'<Input color="DEFAULT" />'}
+               </DefaultDescriptionText>
+               <InputContainer>
+                  <Input
+                     input={this.state.inputValue}
+                     onChangeInput={this.onChangeInputValue}
+                     label='Label'
+                     color={Input.colors.default}
+                  />
+               </InputContainer>
+            </InputAndDescriptionContainer>
+            <InputAndDescriptionContainer>
+               <DefaultDescriptionText>
+                  {'<Input color="PRIMARY" />'}
+               </DefaultDescriptionText>
+               <InputContainer>
+                  <Input
+                     input={this.state.inputValue}
+                     onChangeInput={this.onChangeInputValue}
+                     label='Label'
+                     color={Input.colors.primary}
+                  />
+               </InputContainer>
+            </InputAndDescriptionContainer>
+            <InputAndDescriptionContainer>
+               <DefaultDescriptionText>
+                  {'<Input color="SECONDARY" />'}
+               </DefaultDescriptionText>
+               <InputContainer>
+                  <Input
+                     input={this.state.inputValue}
+                     onChangeInput={this.onChangeInputValue}
+                     label='Label'
+                     color={Input.colors.secondary}
+                  />
+               </InputContainer>
+            </InputAndDescriptionContainer>
+            <InputAndDescriptionContainer>
+               <DefaultDescriptionText>
+                  {'<Input color="WARNING" />'}
+               </DefaultDescriptionText>
+               <InputContainer>
+                  <Input
+                     input={this.state.inputValue}
+                     onChangeInput={this.onChangeInputValue}
+                     label='Label'
+                     color={Input.colors.warning}
+                     fullWidth
+                  />
+               </InputContainer>
+            </InputAndDescriptionContainer>
+            <InputAndDescriptionContainer>
+               <DefaultDescriptionText>
+                  {'<Input color="DANGER" />'}
+               </DefaultDescriptionText>
+               <InputContainer>
+                  <Input
+                     input={this.state.inputValue}
+                     onChangeInput={this.onChangeInputValue}
+                     label='Label'
+                     color={Input.colors.danger}
+                     fullWidth
+                  />
+               </InputContainer>
+            </InputAndDescriptionContainer>
+            <InputAndDescriptionContainer>
+               <DefaultDescriptionText>
+                  {'<Input color="SUCCESS" />'}
+               </DefaultDescriptionText>
+               <InputContainer>
+                  <Input
+                     input={this.state.inputValue}
+                     onChangeInput={this.onChangeInputValue}
+                     label='Label'
+                     color={Input.colors.success}
+                     fullWidth
+                  />
+               </InputContainer>
+            </InputAndDescriptionContainer>
+         </InputExpoRow>
+      )
+   }
+
+   renderSixthRow = (): ReactNode => {
+      return (
+         <InputExpoRow>
+            <InputAndDescriptionContainer>
+               <DefaultDescriptionText>
+                  {'<Input shape="RECTANGLE"/>'}
+               </DefaultDescriptionText>
+               <InputContainer>
+                  <Input
+                     input={this.state.inputValue}
+                     onChangeInput={this.onChangeInputValue}
+                     label='Label'
+                     shape={Input.shapes.rectangle}
+                  />
+               </InputContainer>
+            </InputAndDescriptionContainer>
+            <InputAndDescriptionContainer>
+               <DefaultDescriptionText>
+                  {'<Input shape="SQUARE" />'}
+               </DefaultDescriptionText>
+               <InputContainer>
+                  <Input
+                     input={this.state.inputValue}
+                     onChangeInput={this.onChangeInputValue}
+                     label='Label'
+                     shape={Input.shapes.square}
+                  />
+               </InputContainer>
+            </InputAndDescriptionContainer>
+         </InputExpoRow>
+      )
+   }
+
+   renderCustomInput = (): ReactNode => {
+      return (
+         <InputExpoRow>
+            <InputAndDescriptionContainer>
+               <DefaultDescriptionText>
+                  {'<CustomInput />'}
+               </DefaultDescriptionText>
+               <InputContainer>
+                  <CustomInput
+                     input={this.state.inputValue}
+                     onChangeInput={this.onChangeInputValue}
+                     label='Label'
+                  />
+               </InputContainer>
+            </InputAndDescriptionContainer>
          </InputExpoRow>
       )
    }
@@ -146,6 +286,9 @@ class InputExpo extends Component {
             {this.renderSecondRow()}
             {this.renderThirdRow()}
             {this.renderFourthRow()}
+            {this.renderFifthRow()}
+            {this.renderSixthRow()}
+            {this.renderCustomInput()}
             <AuthInfo>
                <Link href='https://devchallenges.io/profile/dkgdYnckKaYN3fT89MSt'>
                   Hafeezul Kareem Shaik

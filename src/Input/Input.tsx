@@ -80,6 +80,7 @@ class Input extends Component<InputProps> {
          color,
          disabled,
          error,
+         className,
          ...other
       } = this.props
       const { hasFocused } = this.state
@@ -101,6 +102,7 @@ class Input extends Component<InputProps> {
                fullWidth={fullWidth}
                onFocus={this.onFocus}
                onBlur={this.onBlur}
+               className={className}
                {...other}
             />
             <InputHint error={error} color={color} hasFocused={hasFocused}>

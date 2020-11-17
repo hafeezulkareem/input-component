@@ -5,6 +5,7 @@ import {
    Typo14NotoSansJPMedium,
    Typo24Gray31PoppinsMedium,
 } from '../Common/typos'
+import Input from '../Input'
 
 export const InputExpoContainer = styled.div`
    ${tw`
@@ -75,5 +76,11 @@ export const Link = styled.a`
 export const DevChallengesSiteLink = styled(Link)`
    ${tw`
       ml-8px
+   `}
+`
+
+export const CustomInput = styled(Input)`
+   ${tw`
+      p-12px rounded-8px shadow focus:bg-darkGray10 focus:border-darkGray
    `}
 `
