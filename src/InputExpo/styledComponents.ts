@@ -73,7 +73,7 @@ export const Link = styled.a`
    `}
 `
 
-export const DevChallengesSiteLink = styled(Link)`
+export const ExtraLink = styled(Link)`
    ${tw`
       ml-8px
    `}

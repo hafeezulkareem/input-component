@@ -6,7 +6,7 @@ import {
    AuthInfo,
    CustomInput,
    DefaultDescriptionText,
-   DevChallengesSiteLink,
+   ExtraLink,
    FullWidthInputAndDescriptionContainer,
    Header,
    InputAndDescriptionContainer,
@@ -349,9 +349,12 @@ class InputExpo extends Component {
                <Link href='https://devchallenges.io/profile/dkgdYnckKaYN3fT89MSt'>
                   Hafeezul Kareem Shaik
                </Link>
-               <DevChallengesSiteLink href='https://devchallenges.io/'>
+               <ExtraLink href='https://devchallenges.io/'>
                   @DevChallenges
-               </DevChallengesSiteLink>
+               </ExtraLink>
+               <ExtraLink href='https://github.com/hafeezulkareem/input-component'>
+                  Github
+               </ExtraLink>
             </AuthInfo>
          </InputExpoContainer>
       )
