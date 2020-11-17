@@ -15,16 +15,32 @@ const getShapeStyles = (shape: string): TwStyle => {
    }
 }
 
-const getSizeStyles = (size: string) => {
+const getSizeStyles = (size: string, startIcon: string, endIcon: string) => {
    switch (size) {
       case sizes.small:
-         return tw`p-8px`
+         return startIcon
+            ? tw`p-8px pl-32px`
+            : endIcon
+            ? tw`p-8px pr-32px`
+            : tw`p-8px`
       case sizes.medium:
-         return tw`p-12px`
+         return startIcon
+            ? tw`p-12px pl-36px`
+            : endIcon
+            ? tw`p-12px pr-36px`
+            : tw`p-12px`
       case sizes.large:
-         return tw`p-20px`
+         return startIcon
+            ? tw`p-20px pl-44px`
+            : endIcon
+            ? tw`p-20px pr-44px`
+            : tw`p-20px`
       default:
-         return tw`p-12px`
+         return startIcon
+            ? tw`p-12px pl-36px`
+            : endIcon
+            ? tw`p-12px pr-36px`
+            : tw`p-12px`
    }
 }
 
@@ -82,11 +98,32 @@ export const InputLabel = styled(
    error && tw`text-persianRed`,
 ])
 
+export const InputContainer = styled.div`
+   ${tw`
+      flex items-center relative
+   `}
+`
+const IconContainer = styled.div`
+   ${tw`
+      mt-8px absolute
+   `}
+`
+
+export const StartIconContainer = styled(IconContainer)`
+   left: 8px;
+`
+
+export const EndIconContainer = styled(IconContainer)`
+   right: 8px;
+`
+
+export const Icon = styled.i``
+
 export const TextInput = styled.input(
-   ({ error, size, shape, color, disabled, fullWidth }) => [
+   ({ error, size, shape, color, disabled, fullWidth, startIcon, endIcon }) => [
       tw`mt-8px border border-solid border-gray20 outline-none`,
       getShapeStyles(shape),
-      getSizeStyles(size),
+      getSizeStyles(size, startIcon, endIcon),
       getInputColorStyles(color),
       error && tw`border-persianRed focus:border-persianRed`,
       disabled
@@ -97,10 +134,10 @@ export const TextInput = styled.input(
 )
 
 export const TextArea = styled.textarea(
-   ({ error, size, shape, color, disabled, fullWidth }) => [
+   ({ error, size, shape, color, disabled, fullWidth, startIcon, endIcon }) => [
       tw`mt-8px border border-solid border-gray20 outline-none resize-none`,
       getShapeStyles(shape),
-      getSizeStyles(size),
+      getSizeStyles(size, startIcon, endIcon),
       getInputColorStyles(color),
       error && tw`border-persianRed focus:border-persianRed`,
       disabled

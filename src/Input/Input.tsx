@@ -1,10 +1,14 @@
 import React, { Component, ReactNode } from 'react'
 
-import { colors, shapes, sizes, types } from './constants'
+import { colors, shapes, sizes } from './constants'
 import {
+   EndIconContainer,
+   Icon,
+   InputContainer,
    InputHint,
    InputLabel,
    LabelAndInputContainer,
+   StartIconContainer,
    TextArea,
    TextInput,
 } from './styledComponents'
@@ -50,14 +54,31 @@ class Input extends Component<InputProps> {
       onChangeInput: () => {},
       input: '',
       hint: '',
-      type: types.text,
+      type: 'text',
       className: '',
    }
 
    static sizes = sizes
    static colors = colors
    static shapes = shapes
-   static types = types
+
+   renderStartIcon = (): ReactNode => {
+      const { startIcon, multiline } = this.props
+      return startIcon && !multiline ? (
+         <StartIconContainer>
+            <Icon className='material-icons'>{startIcon}</Icon>
+         </StartIconContainer>
+      ) : null
+   }
+
+   renderEndIcon = (): ReactNode => {
+      const { endIcon, multiline } = this.props
+      return endIcon && !multiline ? (
+         <EndIconContainer>
+            <Icon className='material-icons'>{endIcon}</Icon>
+         </EndIconContainer>
+      ) : null
+   }
 
    onFocus = (): void => {
       this.setState({ hasFocused: true })
@@ -83,6 +104,8 @@ class Input extends Component<InputProps> {
          error,
          multiline,
          rows,
+         startIcon,
+         endIcon,
          className,
          ...other
       } = this.props
@@ -100,8 +123,10 @@ class Input extends Component<InputProps> {
             fullWidth={fullWidth}
             onFocus={this.onFocus}
             onBlur={this.onBlur}
-            className={className}
             rows={rows}
+            className={className}
+            startIcon={startIcon}
+            endIcon={endIcon}
             {...other}
          />
       ) : (
@@ -119,6 +144,8 @@ class Input extends Component<InputProps> {
             onFocus={this.onFocus}
             onBlur={this.onBlur}
             className={className}
+            startIcon={startIcon}
+            endIcon={endIcon}
             {...other}
          />
       )
@@ -132,7 +159,11 @@ class Input extends Component<InputProps> {
             <InputLabel error={error} color={color} hasFocused={hasFocused}>
                {label}
             </InputLabel>
-            {this.renderInputOrTextArea()}
+            <InputContainer>
+               {this.renderStartIcon()}
+               {this.renderInputOrTextArea()}
+               {this.renderEndIcon()}
+            </InputContainer>
             <InputHint error={error} color={color} hasFocused={hasFocused}>
                {hint}
             </InputHint>

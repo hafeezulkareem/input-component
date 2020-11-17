@@ -297,6 +297,39 @@ class InputExpo extends Component {
       )
    }
 
+   renderEighthRow = (): ReactNode => {
+      return (
+         <InputExpoRow>
+            <InputAndDescriptionContainer>
+               <DefaultDescriptionText>
+                  {'<Input startIcon="call" />'}
+               </DefaultDescriptionText>
+               <InputContainer>
+                  <Input
+                     input={this.state.inputValue}
+                     onChangeInput={this.onChangeInputValue}
+                     label='Label'
+                     startIcon='call'
+                  />
+               </InputContainer>
+            </InputAndDescriptionContainer>
+            <InputAndDescriptionContainer>
+               <DefaultDescriptionText>
+                  {'<Input endIcon="lock" />'}
+               </DefaultDescriptionText>
+               <InputContainer>
+                  <Input
+                     input={this.state.inputValue}
+                     onChangeInput={this.onChangeInputValue}
+                     label='Label'
+                     endIcon='lock'
+                  />
+               </InputContainer>
+            </InputAndDescriptionContainer>
+         </InputExpoRow>
+      )
+   }
+
    render() {
       return (
          <InputExpoContainer>
@@ -310,6 +343,7 @@ class InputExpo extends Component {
             {this.renderFifthRow()}
             {this.renderSixthRow()}
             {this.renderSeventhRow()}
+            {this.renderEighthRow()}
             {this.renderCustomInput()}
             <AuthInfo>
                <Link href='https://devchallenges.io/profile/dkgdYnckKaYN3fT89MSt'>
