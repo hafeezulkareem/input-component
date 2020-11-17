@@ -96,6 +96,20 @@ export const TextInput = styled.input(
    ]
 )
 
+export const TextArea = styled.textarea(
+   ({ error, size, shape, color, disabled, fullWidth }) => [
+      tw`mt-8px border border-solid border-gray20 outline-none resize-none`,
+      getShapeStyles(shape),
+      getSizeStyles(size),
+      getInputColorStyles(color),
+      error && tw`border-persianRed focus:border-persianRed`,
+      disabled
+         ? tw`cursor-not-allowed border-gainsboro bg-concrete`
+         : tw`cursor-auto`,
+      fullWidth ? tw`` : tw`w-maxContent`,
+   ]
+)
+
 export const InputHint = styled(
    Typo10NotoSansJPMedium
 )(({ error, color, hasFocused }) => [

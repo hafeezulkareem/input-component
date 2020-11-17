@@ -276,6 +276,27 @@ class InputExpo extends Component {
       )
    }
 
+   renderSeventhRow = (): ReactNode => {
+      return (
+         <InputExpoRow>
+            <InputAndDescriptionContainer>
+               <DefaultDescriptionText>
+                  {'<Input multiline row="5" />'}
+               </DefaultDescriptionText>
+               <InputContainer>
+                  <Input
+                     input={this.state.inputValue}
+                     onChangeInput={this.onChangeInputValue}
+                     label='Label'
+                     multiline
+                     rows={5}
+                  />
+               </InputContainer>
+            </InputAndDescriptionContainer>
+         </InputExpoRow>
+      )
+   }
+
    render() {
       return (
          <InputExpoContainer>
@@ -288,6 +309,7 @@ class InputExpo extends Component {
             {this.renderFourthRow()}
             {this.renderFifthRow()}
             {this.renderSixthRow()}
+            {this.renderSeventhRow()}
             {this.renderCustomInput()}
             <AuthInfo>
                <Link href='https://devchallenges.io/profile/dkgdYnckKaYN3fT89MSt'>

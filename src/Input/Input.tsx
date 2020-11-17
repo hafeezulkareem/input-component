@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, ReactNode } from 'react'
 
 import { colors, shapes, sizes, types } from './constants'
 import {
    InputHint,
    InputLabel,
    LabelAndInputContainer,
+   TextArea,
    TextInput,
 } from './styledComponents'
 
@@ -66,7 +67,7 @@ class Input extends Component<InputProps> {
       this.setState({ hasFocused: false })
    }
 
-   render() {
+   renderInputOrTextArea = (): ReactNode => {
       const {
          type,
          input,
@@ -80,31 +81,58 @@ class Input extends Component<InputProps> {
          color,
          disabled,
          error,
+         multiline,
+         rows,
          className,
          ...other
       } = this.props
+      return multiline ? (
+         <TextArea
+            type={type}
+            value={input}
+            placeholder={placeholder}
+            onChange={onChangeInput}
+            size={size}
+            shape={shape}
+            color={color}
+            error={error}
+            disabled={disabled}
+            fullWidth={fullWidth}
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+            className={className}
+            rows={rows}
+            {...other}
+         />
+      ) : (
+         <TextInput
+            type={type}
+            value={input}
+            placeholder={placeholder}
+            onChange={onChangeInput}
+            size={size}
+            shape={shape}
+            color={color}
+            error={error}
+            disabled={disabled}
+            fullWidth={fullWidth}
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+            className={className}
+            {...other}
+         />
+      )
+   }
+
+   render() {
+      const { label, hint, color, error } = this.props
       const { hasFocused } = this.state
       return (
          <LabelAndInputContainer>
             <InputLabel error={error} color={color} hasFocused={hasFocused}>
                {label}
             </InputLabel>
-            <TextInput
-               type={type}
-               value={input}
-               placeholder={placeholder}
-               onChange={onChangeInput}
-               size={size}
-               shape={shape}
-               color={color}
-               error={error}
-               disabled={disabled}
-               fullWidth={fullWidth}
-               onFocus={this.onFocus}
-               onBlur={this.onBlur}
-               className={className}
-               {...other}
-            />
+            {this.renderInputOrTextArea()}
             <InputHint error={error} color={color} hasFocused={hasFocused}>
                {hint}
             </InputHint>
