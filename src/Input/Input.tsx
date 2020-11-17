@@ -29,6 +29,10 @@ interface InputProps {
 }
 
 class Input extends Component<InputProps> {
+   state = {
+      hasFocused: false,
+   }
+
    static defaultProps = {
       label: '',
       error: false,
@@ -54,6 +58,14 @@ class Input extends Component<InputProps> {
    static shapes = shapes
    static types = types
 
+   onFocus = (): void => {
+      this.setState({ hasFocused: true })
+   }
+
+   onBlur = (): void => {
+      this.setState({ hasFocused: false })
+   }
+
    render() {
       const {
          type,
@@ -70,8 +82,12 @@ class Input extends Component<InputProps> {
          error,
          ...other
       } = this.props
+      const { hasFocused } = this.state
       return (
          <LabelAndInputContainer>
+            <InputLabel error={error} color={color} hasFocused={hasFocused}>
+               {label}
+            </InputLabel>
             <TextInput
                type={type}
                value={input}
@@ -83,12 +99,11 @@ class Input extends Component<InputProps> {
                error={error}
                disabled={disabled}
                fullWidth={fullWidth}
+               onFocus={this.onFocus}
+               onBlur={this.onBlur}
                {...other}
             />
-            <InputLabel error={error} color={color}>
-               {label}
-            </InputLabel>
-            <InputHint error={error} color={color}>
+            <InputHint error={error} color={color} hasFocused={hasFocused}>
                {hint}
             </InputHint>
          </LabelAndInputContainer>

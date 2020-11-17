@@ -48,7 +48,6 @@ const getInputColorStyles = (color: string) => {
 }
 
 const getTextColorStyles = (color: string, error: boolean) => {
-   console.log('getTextColorStyles -> error, color', color, error)
    if (error) {
       return tw`text-persianRed`
    }
@@ -76,6 +75,13 @@ export const LabelAndInputContainer = styled.div`
    `}
 `
 
+export const InputLabel = styled(
+   Typo12NotoSansJPMedium
+)(({ error, color, hasFocused }) => [
+   hasFocused && getTextColorStyles(color, error),
+   error && tw`text-persianRed`,
+])
+
 export const TextInput = styled.input(
    ({ error, size, shape, color, disabled, fullWidth }) => [
       tw`mt-8px border border-solid border-gray20 outline-none`,
@@ -90,16 +96,10 @@ export const TextInput = styled.input(
    ]
 )
 
-export const InputLabel = styled(Typo12NotoSansJPMedium)`
-   ${TextInput}:focus ~ & {
-      ${({ color, error }) => getTextColorStyles(color, error)}
-   }
-   ${({ error }) => [tw`order-first`, error && tw`text-persianRed`]}
-`
-
-export const InputHint = styled(Typo10NotoSansJPMedium)`
-   ${TextInput}:focus ~ & {
-      ${({ color, error }) => getTextColorStyles(color, error)}
-   }
-   ${({ error }) => [tw`mt-8px`, error && tw`text-persianRed`]}
-`
+export const InputHint = styled(
+   Typo10NotoSansJPMedium
+)(({ error, color, hasFocused }) => [
+   tw`mt-8px`,
+   hasFocused && getTextColorStyles(color, error),
+   error && tw`text-persianRed`,
+])
